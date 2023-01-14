@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%" xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>污水处理：何处是奔涌来水的归途？</title>
+  <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+  <script type="text/javascript" src="./data1.json"></script>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <!-- Bootstrap CSS-->
+  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome CSS-->
+  <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+  <!-- Custom icon font-->
+  <link rel="stylesheet" href="css/fontastic.css">
+  <!-- Google fonts - Open Sans-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+  <!-- Fancybox-->
+  <link rel="stylesheet" href="vendor/@fancyapps/fancybox/jquery.fancybox.min.css">
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+  <!-- Custom stylesheet - for your changes-->
+  <link rel="stylesheet" href="css/custom.css">
+  <!-- Favicon-->
+  <link rel="shortcut icon" href="favicon.png">
+</head>
+
+<body>
+  <header class="header">
+    <!-- Main Navbar-->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <div class="navbar-header d-flex align-items-center justify-content-between">
+          <h4>污水处理：何处是奔涌来水的归途？</h4>
+        </div>
+        <div id="navbarcollapse" class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link active " href="#para1">总体污水排放情况</a>
+            </li>
+            <li class="nav-item"><a class="nav-link active " href="#para2">污水与水质</a>
+            </li>
+            <li class="nav-item"><a class="nav-link active " href="#para3">历年污水处理率</a>
+            </li>
+            <li class="nav-item"><a class="nav-link active" href="#para4">污水处理影响因素</a>
+            </li>
+            <li class="nav-item"><a class="nav-link active" href="#para5">国际比较</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <section style="background: url(imgs/background.jpg); background-size: cover; background-position: center center"
+    class="hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div style="float:right; text-align:left;">
+            <h1>污水处理：<br>何处是奔涌来水的归途？</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Intro Section-->
+  <section class="intro">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h2 class="h3">导语</h2>
+          <p class="text-body" style="font-size: 20px;line-height: 28px">
+            无论是生活污水还是工业废水，都需要经过处理达标后才能排放。家住湖南永州城区的市民肖先生深受污水问题的困扰：从2009年起，永州市城区的各种污水未经处理便被直排湘江，时常将半条江染得乌黑。湘江穿过城市，扮演着临近城市母亲河的角色，滋养着沿岸几十万人，未处理的污水排放威胁着居民的身体健康。但这不仅是永州市，全国各市的污水处理问题也亟需解决。据调查，我国有<span style="font-weight: bold">65.4%</span>的人常年在饮用不符合饮用标准的水。其中大约有<span style="font-weight: bold">7 亿</span> 人饮用大肠菌群超标的水，<span style="font-weight: bold">1.6亿</span>人饮用含有有机污染物严重的水，<span style="font-weight: bold">3500万</span>人饮用硝酸盐超标的水。据京、津、沪、渝等8城市的病因调查，水源污染使这些城市市区发病率比郊区高<span style="font-weight: bold">3倍</span>以上。
+          </p>
+
+        </div>
+        <div class="post col-md-4" style="vert-align: middle">
+          <p></p>
+          <p></p>
+          <img src="imgs/wushui2.webp" alt="..." class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="featured-posts no-padding-top no-padding-bottom">
+    <div class="container">
+      <!-- Post-->
+      <div class="row d-flex align-items-stretch"  id="para1">
+        <div class="text col-lg-12">
+            <div class="col-lg-16">
+              <h2 class="h3">2012-2021年总体污水排放情况</h2>
+              <p>&nbsp</p>
+              <p style="font-size:20px;color: black;">
+                <span style="font-weight: bold">广东省污水排放量位居首位</span>，2021年超过900000万立方米，与第二位的江苏省拉开极大差距，差值逐渐增加，由2012年的226191万立方米增至2021年的408339万立方米。<span style="font-weight: bold">
+                  山东省居于第三，而在2021年，浙江省超过山东省成为了污水排放量前三省份。</span>从地理位置上看，排放量前三的省份均位于东部沿海地区，其经济发展水平较高，2021年广东、江苏、山东、浙江位列全国GDP前四位，广东省GDP为124369.67亿；江苏省以116364.2亿元位列第二；山东省、浙江省也分别突破80000亿与70000亿。经济发展的同时吸引了众多人口的涌入，相应地，这几个城市中常住人口数也在全国前列。
+              </p>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+        <div id="map3" style="width: 97vw;height: 80vh;"></div>
+        <script type="text/javascript">
+          var myChart = echarts.init(document.getElementById('map3'));
+          const option = {
+            title: {
+              text: '图1，全国历年污水排放量（2012-2021年）',
+              x: "left"
+            },
+            tooltip: {
+              trigger: 'item'
+            },
+            legend: {
+              data: dataArr[0],
+              top: 30,
+              type: "scroll"
+            },
+            grid: {
+              left: '3%',
+              right: '4%',
+              bottom: '3%',
+              containLabel: true
+            },
+            xAxis: {
+              type: 'category',
+              boundaryGap: false,
+              data: dataArr[1]
+            },
+            yAxis: {
+              type: 'value',
+              axisLabel: {
+                formatter: '{value}'
+              },
+              max: "1000000",
+            },
+            series: []
+          };
+          var color = ["#cfd0cd"]
+          var data = []
+          var newArr = JSON.parse(JSON.stringify(dataArr))
+          newArr.splice(0, 2)
+          data = newArr.map(item => {
+            let colorIndex = Math.floor(Math.random() * 6);
+            let datas = item.slice(1)
+            if (item[0] == '江苏' || item[0] == '广东') {
+              return {
+                name: item[0],
+                type: 'line',
+                data: datas,
+                itemStyle: {
+                  normal: {
+                    color: '#2E4B46',
+                    lineStyle: {
+                      color: '#2E4B46'
+                    }
+                  }
+                },
+
+              }
+            } else {
+              return {
+                name: item[0],
+                type: 'line',
+                data: datas,
+                itemStyle: {
+                  normal: {
+                    color: '#c5c5c5',
+                    lineStyle: {
+                      color: '#c5c5c5'
+                    }
+                  }
+                },
+
+              }
+            }
+          })
+          option.series = data
+          myChart.setOption(option);
+        </script>
+        <div><p style="font-size:16px; color: #868686;" align="left">数据来源：中华人民共和国住房与城乡建设部统计年鉴</p></div>
+
+        <p>&nbsp;</p>
+        <div class="row d-flex align-items-stretch">
+          <div class="text col-lg-12">
+              <div class="content">
+                <p style="font-size:20px;color: black;"><span
+                    style="font-weight: bold">其余各省市排放量近十年来位于40000万立方米以下，呈稳定增长态势，其中西藏的排放量最低</span> ，但是也在2020年超过10000万立方米。<span
+                    style="font-weight: bold">全国的平均污水排放量逐年增长，在2021年突破200000万立方米。</span></p>
+                <p style="font-size:20px;color: black;">各省份排放量情况与该区域经济发展水平、设施状况、人口数量、土地面积等因素紧紧相关，反应了各省份的城市发展水平和城建投入状况。</p>
+              </div>
+          </div>
+        </div>
+        <div class="row d-flex align-items-stretch" >
+          <div class="text col-lg-12">
+            <div class="text-inner d-flex align-items-stretch">
+              <div class="content"  id="para2">
+                <header class="post-header">
+                  <h2 class="h3">污水与水质</h2></a>
+                </header>
+                <!-- <div id="main" style="width: 1200px; height:600px;"></div> -->
+                <div style="height: 500px;margin-top: 50px;"><iframe name="toppage" width=100% height=100% marginwidth=0
+                    marginheight=0 frameborder="no" border="0" src="shuizhi.html"></iframe></div>
+                <div><p style="font-size:16px; color: #868686;" align="left">数据来源：中华人民共和国生态环境部</p></div>
+
+                <p style="font-size:20px;color: black;">图2详细分析了2021年11月至2022年10月地表水水质类别比例变化，依据国家标准，I类水为源头水，II类和III类水适用于集中式生活饮用。
+                  <span
+                    style="font-weight: bold">2021年10月至2022年7月，前三类水比重最低时仅有75.8%，与最高时相差13.4%，变化幅度大，其中占比最重的II类水变化幅度也最大，为8.2%。</span>
+                </p>
+                <p style="font-size:20px;color: black;">
+                  污水排放不仅影响到水质，最重要的是影响生存环境和个人身体健康。城市生活污水处理自200年前工业革命以来，越来越受人们重视。城市污水处理率已成为一个地区文明与否的重要标志之一。近200年来，城市污水处理已从原始的自然处理、简单的一级处理发展到利用各种先进技术、深度处理污水，并回用。我国城市污水处理相对于发达国家，起步较晚，城市污水处理系统仍需改进和完善。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+  </section>
+  <p></p>
+  <div style="padding-top: 70px;" ></div>
+  <div class="container">
+    <div class="row"  id="para3">
+      <div class="col-lg-12" style="text-align: center">
+        <header class="post-header">
+          <h2 class="h3" align="left">全国历年污水处理率</h2></a>
+        </header>
+        <video width="1000" ; height="600" ; autoplay="autoplay" ; controls="controls">
+          <source src="全国历年城市市政污水处理率.mp4" />
+        </video>
+        <div class="text col-lg-12"><p style="font-size:16px; color: #868686;" align="left">数据来源：中华人民共和国住房与城乡建设部</p></div>
+        <div style="height: 500px;margin: 60px;"><iframe name="toppage" width=100% height=100% marginwidth=0
+            marginheight=0 frameborder="no" border="0" src="./chulilv.html"></iframe></div>
+      </div>
+    </div>
+    <p style="font-size:16px; color: #868686;" align="left">数据来源：中华人民共和国住房与城乡建设部</p>
+
+    <div class="row d-flex align-items-stretch">
+      <div class="text col-lg-12">
+        <div class="text-inner d-flex align-items-stretch">
+          <div class="content">
+            <p style="font-size:20px">
+              近十年来，全国污水处理率都呈现增长态势。<span style="font-weight: bold">
+                至2021年，除西藏外，各省污水处理率均超过95%。</span>西藏的污水处理率虽落后全国平均水平，但变化最大，尤其是从2012年至2016年，由19.07%增至86.43%，增长倍数达353%。
+            </p>
+            <p style="font-size:20px"> 另外青海、黑龙江位于倒数第二、倒数第三的位置，从经济状况方面来看，符合经济发展差异。值得关注的是，在2019年，湖北省污水处理率达到了100.26%，省内污水处理量超过了污水排放量。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding-top: 60px;" ></div>
+    <section class="intro">
+      <div class="container"  id="para4">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 class="h3">基础设施建设、投入水平、经济发展水平对污水处理的影响</h2>
+            <p>&nbsp;</p>
+            <p class="text-body" style="font-size:20px">
+              通过计算2012-2021年污水处理率和污水管道数量、污水排放量、市政公共设施建设固定资产投资（污水）、污水处理厂数量、GDP、人均GDP的两两相关性，我们从基础设施建设、投入水平、经济发展水平三方面探究进一步提升污水处理率的可能性。
+            </p>
+          </div>
+          <div class="post col-md-8">
+            <p style="color: #1b1e21; font-size: 20px; font-weight: bold" align="left">图5，污水处理影响因素分析图</p>
+            <img src="imgs/relation1.0.png" alt="..." class="img-fluid">
+          </div>
+          <div><p style="font-size:16px; color: #868686;" align="left">数据来源：中华人民共和国住房与城乡建设部</p> <p class="text-body">
+            （上图所标注的数据为对应因素的相关性，颜色越深，则表示相关性越强）</p></div>
+
+          <p class="text-body" style="font-size:20px">
+            从上述数据来看，这些因素均与污水处理率高度相关，其中<span style="font-weight: bold">
+              污水处理厂数量在其中的相关性最高，达到了97%</span>；另一也属于基础设施建设部分的<span style="font-weight: bold">污水管道数量因素排第二，相关性达95%</span>
+            。可见基础设施建设在污水处理中的重要性。</p>
+          <p class="text-body" style="font-size:20px">
+            另一值得注意的方面是:<span style="font-weight: bold">市政公用设施建设固定资产投资（污水）与其他因素的相关性均是最低
+              ，我们推测产生这一现象的原因是现阶段污水处理率达到了较高水平，城市市政污水处理的公用设施建设普遍较为完善；另外，投资与成效之间存在一定的滞后现象，因此，公用设施建设的投资对污水处理率的直接影响力不及其他因素。</span>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="intro">
+      <div class="container"  id="para5">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2 class="h3">国际比较——以德国为案例</h2>
+            <p>&nbsp;</p>
+            <p class="text-body" style="font-size:20px">
+              2020年德国拥有城镇污水处理厂<span style="font-weight: bold"> 9105座</span>，服务当量人口总规模为<span
+                style="font-weight: bold">1.518亿</span>，接近德国实际人口（8200万）的2倍。
+              <span style="font-weight: bold">2020年德国水协调查了其中的5220座，调查总规模为1.308亿当量人口，占总规模的86.2%。</span>
+            </p>
+            <p class="text-body" style="font-size:20px">
+              从图6中不难发现，级别越高的污水处理厂相应的规模范围也越大，而越高级别的污水处理厂对应的服务人口也越多，资源配置较为合理。
+            </p>
+          </div>
+          <div style="height: 500px;width: 100vw;"><iframe name="toppage" width=100% height=100% marginwidth=0
+              marginheight=0 frameborder="no" border="0" src="./german wushui.html"></iframe></div>
+        </div>
+
+      </div>
+          <div><p style="font-size:16px; color: #868686;" align="left">数据来源：德国水协DWA专业刊物</p></div>
+    </section>
+
+    <section class="intro">
+      <div class="container">
+        <!-- Post-->
+
+          <div class="text col-lg-16">
+            <div class="text-inner d-flex align-items-center">
+              <div class="content">
+                <header class="post-header">
+                  <h2 class="h3">德国污水处理情况</h2></a>
+                </header>
+                <p>&nbsp;</p>
+                <p class="text-body" style="font-size:20px">
+                  合流制是用同一个管渠系统收集和输送污废水的排水方式，分流制则是用不同管渠分类收集和输送污废水的排水方式。从控<br>制和防止水体的污染来看，合流制效果较好，还增加了污水厂容量；当然，建设费用也随之增高。采用分流制，雨天有部分<br>混合污水通过溢流井溢出，直接排入水体，成为水体污染源，使水体遭受污染。
+                </p>
+                <p style="color: #1b1e21; font-size: 20px; font-weight: bold" align="left">图7，德国排水体制分布图</p><p>（图中数字是该地区合流制占比）</p>
+                <div style="width: 100vw;height:500px"><iframe name="toppage" width=100% height=100% marginwidth=0
+                    marginheight=0 frameborder="no" border="0" src="./maps.html"></iframe></div>
+                <div><p style="font-size:16px; color: #868686;" align="left">数据来源：德国水协DWA专业刊物</p>
+                </div>
+                <p style="font-size:20px;color: black;">
+                  <span style="font-weight: bold;">图7中数字是该地区合流制管道数量占比，以萨尔州最高达92.1%；以勃兰登堡州最低为3.9%。</span>东西向横线是被称为“排水体<br>制赤道线”，该线在逐步向北移动，说明原东德地区在排水系统建设和改造中更多采用了分流制。<br>需要说明的是德国污水处理厂平均负荷率不足80%，年污水处理量是包括雨水和其它外来水量的，不是实际的污水产生量，<br>所以合流制地区人均污水处理量明显高于分流制地区。
+                </p>
+              </div>
+            </div>
+          </div>
+
+        <div style="padding-top: 60px;" ></div>
+          <!-- Post        -->
+          <div class="row d-flex align-items-stretch">
+            <div class="text col-lg-12">
+              <div class="text-inner d-flex align-items-stretch">
+                <div class="content">
+                  <header class="post-header">
+                    <p> </p>
+                    <h2 class="h4">借鉴点</h2></a>
+                  </header>
+                  <p>&nbsp;</p>
+                  <p style="font-size:20px;color: black;">
+                    1.德国污水处理厂规模衡量科学。德国污水处理厂规模是按照服务人口（当量人口）来衡量的，其有效解决了排水体制不同，处理水量不同，但是（当量）人口污染负荷相同的问题。所以，其单位耗电量、单位污泥产量等都是按照单位人口来衡量和比较的。
+                  </p>
+                  <p style="font-size:20px;color: black;">
+                    2.德国以分流制为主的北部和东北部地区的污水处理厂污染物进水浓度几乎比合流制为主的地区高1倍。我国只有低地下水位地区和排水管网较好的城市，其进水浓度才基本上与德国合流制地区接近。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Page Footer-->
+    <footer>
+      <div class="container">
+        <div class="sec aboutus">
+          <h3>关于我们</h3>
+          <p>成员：申志杰 吴淑倩 张锦（排名不分先后）</p>
+          <p>指导老师：吴小坤老师</p>
+          <p>学校：华南理工大学</p>
+          <ul class="sci">
+            <li><a href="#"><i class="fa fa-weixin" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-weibo" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+          </ul>
+        </div>
+        <div class="sec statics">
+          <h3>数据来源</h3>
+          <ul>
+            <li><a
+                href="https://www.mohurd.gov.cn/gongkai/fdzdgknr/sjfb/tjxx/jstjnj/index.html">中华人民共和国住房与城乡建设部统计年鉴（2012-2021）</a>
+            </li>
+            <li><a href="https://www.mee.gov.cn/hjzl/shj/dbsszyb/">中华人民共和国生态环境部地表水水质月报（2021.11-2022.10）</a></li>
+            <li><a href="https://www.cuwa.org.cn/guojidongtai/11119.html">德国水协DWA专业刊物《KorrespondenzAbwasser·Abfall》（污水与垃圾）2021年第11期</a></li>
+          </ul>
+        </div>
+        <div class="sec contact">
+          <h3>联系我们</h3>
+          <ul class="info">
+            <li>
+              <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+              <span>广东省广州市番禺区小谷围街道<br>华南理工大学大学城校区</span>
+            </li>
+            <li>
+              <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+              <p><a href="tel:18122486154">181 2248 6154</a></p>
+            </li>
+            <li>
+              <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+              <p><a href="mailto:791922995@qq.com">791922995@qq.com</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <div class="copyright">
+      <p>Copyright &copy; 2020.Company name All rights reserved.</p>
+    </div>
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
+    <script src="js/front.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+
+</html>
