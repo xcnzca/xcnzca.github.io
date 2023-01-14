@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>ECharts</title>
+  <!-- 引入刚刚下载的 ECharts 文件 -->
+  <script src="js/echarts.min.js"></script>
+</head>
+
+<body>
+  <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+  <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById("main"));
+
+
+    $.get('js/paifang.json',
+      function (_rawData) {
+        run(_rawData);
+      }
+    );
+    function run(_rawData) {
+      // var 省份 = ['北京', '天津', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '上海', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '重庆', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆'];
+      const 省份 = [
+        '北京',
+        '天津',
+        '河北',
+        '山西',
+        '内蒙古',
+        '辽宁',
+        '吉林',
+        '黑龙江',
+        '上海',
+        '江苏',
+        '浙江',
+        '安徽',
+        '福建',
+        '江西',
+        '山东',
+        '河南',
+        '湖北',
+        '湖南',
+        '广东',
+        '广西',
+        '海南',
+        '重庆',
+        '四川',
+        '贵州',
+        '云南',
+        '西藏',
+        '陕西',
+        '甘肃',
+        '青海',
+        '宁夏',
+        '新疆'
+      ];
+      const datasetWithFilters = [];
+      const seriesList = [];
+      echarts.util.each(省份, function (省份) {
+        var datasetId = 'dataset_' + 省份;
+        datasetWithFilters.push({
+          id: datasetId,
+          fromDatasetId: 'dataset_raw',
+          transform: {
+            type: 'filter',
+            config: {
+              and: [
+                { dimension: 'Year', gte: 2012 },
+                { dimension: '省份', '=': 省份 }
+              ]
+            }
+          }
+        });
+        seriesList.push({
+          type: 'line',
+          datasetId: datasetId,
+          showSymbol: false,
+          name: 省份,
+          endLabel: {
+            show: true,
+            formatter: function (params) {
+              return params.value[3] + ': ' + params.value[0];
+            }
+          },
+          labelLayout: {
+            moveOverlap: 'shiftY'
+          },
+          emphasis: {
+            focus: 'series'
+          },
+          encode: {
+            x: 'Year',
+            y: '排放量',
+            label: ['省份', '排放量'],
+            itemName: 'Year',
+            tooltip: ['排放量']
+          },
+          itemStyle: {
+            normal: {
+              color: '#2E4B46',
+              lineStyle: {
+                color: '#2E4B46'
+              }
+            }
+          },
+        });
+      });
+      option = {
+        animationDuration: 10000,
+        dataset: [
+          {
+            id: 'dataset_raw',
+            source: _rawData
+          },
+          ...datasetWithFilters
+        ],
+        title: {
+          text: '各地污水排放量（2012-2021）'
+        },
+        tooltip: {
+          order: 'valueDesc',
+          trigger: 'axis'
+        },
+        xAxis: {
+          type: 'category',
+          nameLocation: 'middle'
+        },
+        yAxis: {
+          name: '排放量'
+        },
+        grid: {
+          right: 140
+        },
+        series: seriesList
+      };
+      myChart.setOption(option);
+    }
+  </script>
+</body>
+
+</html>

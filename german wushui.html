@@ -1,0 +1,124 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=bar-negative&code=PYBwLglsB2AEC8sDeAoWtJgDYFMBcya6GOAHmAQOSDt-oL9qATAAxOAueoHPqg4qmCGNoCw2gIJqAwF0BByoBHIwIRWgMCVAwHqA2p0CtipQA0RdKTyUAxjmhgcAJ0qwiAX2XowwYFkggCqYmD0QA5s_1UAhqQgBnJSuJAgDNgPQBbDzBdPQIggFdoDUgYWAAKEA89DzCfAEpCQMLiADdM2D0cLAA1DywEWAysnIBtRgBdADpobJwAovQQvTTSoYh6xkVYOsRG7J8O3GhnMAALAG5YMYAeKY2IAGp9_Pt-oorq2th9xEotgCM9AHoAPkN9hsy55ohOiL0Aa30Vw-TR8306pSwcRwwMoAFJKH1-sYkWccGA4no4OcalhUcQUehTERcG5oAATOwBcmRDwEZqUQAGyoBgGMAp-aAcr1AA6mgBXrJSwJmAWHNAIVKgC65QDHyry2mYHKA8AAiADMjDlJmlziclIKxFwQQo_IVCOl6CczhWesoABZDQE7sAosAwlQDf5AhoYGAPBBoAAZDx3SoERzQ1VEUgAQW8PnpAROgTAAE8QPh-ZDoS7Cl5fL7_VgqacioMIlF3PykKmcMYEfjAsSa0QpUR4xHfNHArGHInk5pIjhnKF4-nApmfAAVCAaf55_o-FbAADusVqPl6RVrhRpHvplEANN6AADlAOV-fJ3gBi5Q-THeASDkz_zt4BttWvO8AKXKHtoBQmwBvoZdOHBR2DNGMkW6MIuxZDkeUHDskyoO5Mkg9AsD9AMtSKGd50DPRoSNQoQGAHwIGSaAqBNM1EVXbD0BwMIQBWDx8L_dtgmADQ4j_ShvwgX8yMKNdAg3Ol_3oegOgATgAVkUegRNEiYAEZhJEgB2RQlQ6RgADZFAtDp5M_Qo3SwUJ1AAYgADgVEScHUnBuKJbDAKKYDQOFcVeQojBOxguD3J8D0JyoEc7VqeCpiQ3MUMKNCFwwTCcHc9BcPwwjiJcUikV44gqJouiWwipiWLYjiuPS9z-PpRgOgtUytLUiSxLU2StOkxTGvU9SOkU9S9NdKwjMoYylQtDQLQtWzYHfV9jDWIA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  title: {
+    text: '图6，德国2020年城镇污水处理厂规模分布状况',
+    x:'left'
+  },
+  tooltip: {
+   trigger: 'axis',
+          formatter: function (params) {
+            var relVal = params[0].name
+            for (var i = 0, l = params.length; i < l; i++) {
+              relVal += '<br/>' + params[i].marker + params[i].value + '%'
+            }
+            return relVal
+          }
+  },
+  legend: {
+    data: ['占调查座数比', '占服务人口比'],
+    top:"30"
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'value',
+      axisLabel: {
+              formatter: '{value}%'
+            },
+    }
+  ],
+  yAxis: [
+    {
+      type: 'category',
+      axisTick: {
+        show: false
+      },
+      data: ['第一级', '第二级', '第三级', '第四级', '第五级']
+    }
+  ],
+  series: [
+    {
+      name: '占调查座数比',
+      type: 'bar',
+      label: {
+        show: true,
+        position: 'right'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [22.95,29.90,12.97,30.06,4.12],
+      color:'#839e6e'
+    },
+    
+    {
+      name: '占服务人口比',
+      type: 'bar',
+      stack: 'Total',
+      label: {
+        show: true,
+        position: 'right'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [0.48,4.05,5.01,49.71,66.76],
+      color:'#304c44'
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

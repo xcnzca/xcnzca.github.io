@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>污水</title>
+  <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+  <script type="text/javascript" src="./data1.json"></script>
+</head>
+
+<body>
+  <div id="map3" style="width: 97vw;height: 100vh;"></div>
+</body>
+<script>
+  var charts = echarts.init(document.getElementById('map3'));
+  const option = {
+    title: {
+      text: '全国历年污水排放量',
+      x: "center"
+    },
+    tooltip: {
+      trigger: 'axis',
+      formatter: function (params) {
+        var relVal = params[0].name
+        for (var i = 0, l = params.length; i < l; i++) {
+          relVal += '<br/>' + params[i].marker + params[i].seriesName + params[i].value
+        }
+        return relVal
+      }
+    },
+    legend: {
+      data: dataArr[0],
+      top: 30,
+      type: "scroll"
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: dataArr[1]
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        formatter: '{value}'
+      },
+      max: "1000000",
+    },
+    series: []
+  };
+  var color = ["#296fab", "#12507b", "#003d74", "#145ca0", "#d4e5ef", "#5976ba", "#12264f", "#6f94cd", "#8aabcc", "#5e93b9"]
+  var data = []
+  var newArr = JSON.parse(JSON.stringify(dataArr))
+  newArr.splice(0, 2)
+  data = newArr.map(item => {
+    let colorIndex = Math.floor(Math.random() * 6);
+    let datas = item.slice(1).reverse()
+    if (item[0] == '江苏' || item[0] == '广东') {
+      return {
+        name: item[0],
+        type: 'line',
+        data: datas,
+        itemStyle: {
+          normal: {
+            color: '#2E4B46',
+            lineStyle: {
+              color: '#2E4B46'
+            }
+          }
+        },
+
+      }
+    } else {
+      return {
+        name: item[0],
+        type: 'line',
+        data: datas,
+        itemStyle: {
+          normal: {
+            color: '#c5c5c5',
+            lineStyle: {
+              color: '#c5c5c5'
+            }
+          }
+        },
+
+      }
+    }
+  })
+  option.series = data
+  charts.setOption(option);
+</script>
+
+</html>

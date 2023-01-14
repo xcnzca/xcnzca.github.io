@@ -1,0 +1,162 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=line-race
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/jquery"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/extension/bmap.min.js"></script>
+  -->
+  <script type="text/javascript" src="paifang.json"></script>
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    var option;
+
+    $.get('.js/paifang.json',
+  function (_rawData) {
+    run(_rawData);
+  }
+);
+    function run(_rawData) {
+      // var 省份 = ['北京', '天津', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '上海', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '重庆', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆'];
+      const 省份 = [
+        '北京',
+        '天津',
+        '河北',
+        '山西',
+        '内蒙古',
+        '辽宁',
+        '吉林',
+        '黑龙江',
+        '上海',
+        '江苏',
+        '浙江',
+        '安徽',
+        '福建',
+        '江西',
+        '山东',
+        '河南',
+        '湖北',
+        '湖南',
+        '广东',
+        '广西',
+        '海南',
+        '重庆',
+        '四川',
+        '贵州',
+        '云南',
+        '西藏',
+        '陕西',
+        '甘肃',
+        '青海',
+        '宁夏',
+        '新疆'
+      ];
+  const datasetWithFilters = [];
+  const seriesList = [];
+  echarts.util.each(省份, function (省份) {
+    var datasetId = 'dataset_' + 省份;
+    datasetWithFilters.push({
+      id: datasetId,
+      fromDatasetId: 'dataset_raw',
+      transform: {
+        type: 'filter',
+        config: {
+          and: [
+            { dimension: 'Year', gte: 2012 },
+            { dimension: '省份', '=': 省份 }
+          ]
+        }
+      }
+    });
+    seriesList.push({
+      type: 'line',
+      datasetId: datasetId,
+      showSymbol: false,
+      name: 省份,
+      endLabel: {
+        show: true,
+        formatter: function (params) {
+          return params.value[3] + ': ' + params.value[0];
+        }
+      },
+      labelLayout: {
+        moveOverlap: 'shiftY'
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      encode: {
+        x: 'Year',
+        y: '排放量',
+        label: ['省份', '排放量'],
+        itemName: 'Year',
+        tooltip: ['排放量']
+      }
+    });
+  });
+  option = {
+    animationDuration: 10000,
+    dataset: [
+      {
+        id: 'dataset_raw',
+        source: _rawData
+      },
+      ...datasetWithFilters
+    ],
+    title: {
+      text: '各地污水排放量（2012-2021）'
+    },
+    tooltip: {
+      order: 'valueDesc',
+      trigger: 'axis'
+    },
+    xAxis: {
+      type: 'category',
+      nameLocation: 'middle'
+    },
+    yAxis: {
+      name: 'Income'
+    },
+    grid: {
+      right: 140
+    },
+    series: seriesList
+  };
+  myChart.setOption(option);
+}
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

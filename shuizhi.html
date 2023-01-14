@@ -1,0 +1,144 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=area-stack
+-->
+<!DOCTYPE html>
+<html lang="zh-CN" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+        color: ["#E5E6E7", "#C9CDCF", "#91A99B", "#547261", "#304441", "#1D2E26"],
+  title: {
+    text: '图2，地表水水质(2021.11-2022.10)',
+    x: 'left'
+  },
+  tooltip: {
+    trigger: 'item',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['I类', 'II类', 'III类', 'IV类', 'V类', '劣V类'],
+    top:30
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['2021.11', '2021.12', '2022.1', '2022.2', '2022.3', '2022.4', '2022.5', '2022.6', '2022.7', '2022.8', '2022.9', '2022.10']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: 'I类',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [10.3, 15.1, 15.5, 15.9, 16.3,	10.8, 10.0, 8.9,	5.0,	5.7,	6.8,	12.0]
+    },
+    {
+      name: 'II类',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [50.7, 50.6, 43.3, 47.5, 50.3,	47.5, 46.3, 43.7,	42.5,	44.8,	47.1,	48.5]
+    },
+    {
+      name: 'III类',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [27.2, 23.4, 28.9, 25.2, 22.6,	27.3, 27.2, 26.6, 28.3, 27.3, 29.2,	27.8]
+    },
+
+    {
+      name: 'IV类',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [8.9, 8.4, 9.3, 8.3, 7.9, 10.9, 12.2, 15.9, 16.7, 16.4, 13.3, 9.5]
+    },
+    {
+      name: 'V类',
+      type: 'line',
+      stack: 'Total',
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [1.8, 1.5, 1.8, 2.1, 2.2, 2.4, 2.8, 3.5, 5.5, 4.4, 2.9, 1.5 ]
+    },
+    {
+      name: '劣V类',
+      type: 'line',
+      stack: 'Total',
+      label: {
+        show: true,
+        position: 'top'
+      },
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: [1.1, 1.0, 1.2, 1.0, 0.8, 1.2, 1.3, 1.4, 2.1, 1.4, 0.7, 0.6]
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>

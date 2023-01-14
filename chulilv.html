@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>污水</title>
+  <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+  <script type="text/javascript" src="./data.json"></script>
+</head>
+
+<body>
+  <div id="map" style="width: 97vw;height: 100vh;"></div>
+</body>
+<script>
+  var charts = echarts.init(document.getElementById('map'));
+  const option = {
+    title: {
+      text: '图4，全国历年处理污水率',
+      x: "left"
+    },
+    tooltip: {
+      trigger: 'item'
+    },
+    legend: {
+      data: dataArr[0],
+      top: 30,
+      type: "scroll"
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: dataArr[1]
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        formatter: '{value}%'
+      },
+      max: "120",
+    },
+    series: []
+  };
+  var color = ["#CCD9C5", "#BBD598", "#829E6E", "#6F9252", "#2E4B46", "#CFD4B4"]
+  var data = []
+  var newArr = JSON.parse(JSON.stringify(dataArr))
+  newArr.splice(0, 2)
+  data = newArr.map(item => {
+    let colorIndex = Math.floor(Math.random() * 6);
+    let datas = item.slice(1).reverse()
+    if (item[0] == '西藏' || item[0] == '海南') {
+      return {
+        name: item[0],
+        type: 'line',
+        data: datas,
+        itemStyle: {
+          normal: {
+            color: '#2E4B46',
+            lineStyle: {
+              color: '#2E4B46'
+            }
+          }
+        },
+
+      }
+    } else {
+      return {
+        name: item[0],
+        type: 'line',
+        data: datas,
+        itemStyle: {
+          normal: {
+            color: '#c5c5c5',
+            lineStyle: {
+              color: '#c5c5c5'
+            }
+          }
+        },
+
+      }
+    }
+
+  })
+  option.series = data
+  charts.setOption(option);
+</script>
+
+</html>

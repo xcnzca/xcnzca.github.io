@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>德国地图</title>
+  <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+  <!-- <script src="https://fastly.jsdelivr.net/npm/d3-array"></script>
+  <script src="https://fastly.jsdelivr.net/npm/d3-geo"></script> -->
+  <script type="text/javascript" src="./DEU.json"></script>
+</head>
+
+<body>
+  <div id="map" style="width: 100vh;height: 100vh;"></div>
+</body>
+<script>
+  var charts = echarts.init(document.getElementById('map'));
+  echarts.registerMap('edu', mapData);
+  const option = {
+    // 背景颜色
+    backgroundColor: "#404a59",
+    // 提示浮窗样式
+    tooltip: {
+      show: true,
+      trigger: "item",
+      alwaysShowContent: false,
+      backgroundColor: "#0C121C",
+      borderColor: "rgba(0, 0, 0, 0.16);",
+      hideDelay: 100,
+      triggerOn: "mousemove",
+      enterable: true,
+      textStyle: {
+        color: "#DADADA",
+        fontSize: "12",
+        width: 20,
+        height: 30,
+        overflow: "break",
+      },
+      showDelay: 100
+    },
+    //数据映射
+    geo: {
+      map: "edu",
+      show: true,
+      roam: false,
+      itemStyle: {
+        areaColor: "#99CBF9", 
+        borderColor: "#fff",  
+        borderWidth: 0.6,
+      },
+      emphasis: {  
+        label: {
+          color: "#fff",
+        },
+        itemStyle: {
+          areaColor: "#9DE3FF",
+        },
+      },
+      select: { 
+        label: {
+          color: "#fff",
+        },
+        itemStyle: {
+          areaColor: "#9DE3FF",
+        },
+      },
+    },
+    toolbox: {
+      show: true,
+      //orient: 'vertical',
+      left: 'left',
+      top: 'top',
+      feature: {
+        dataView: { readOnly: false },
+        restore: {},
+        saveAsImage: {}
+      }
+    },
+    visualMap: {
+      left: 'right',
+      min: 0,
+      max: 100,
+      inRange: {
+        color: [
+          '#313695',
+          '#4575b4',
+          '#74add1',
+          '#abd9e9',
+          '#e0f3f8',
+          '#ffffbf',
+          '#fee090',
+          '#fdae61',
+          '#f46d43',
+          '#d73027',
+          '#a50026'
+        ]
+      },
+      text: ['High', 'Low'],
+      calculable: true
+    },
+    toolbox: {
+      show: true,
+      //orient: 'vertical',
+      left: 'left',
+      top: 'top',
+      feature: {
+        dataView: { readOnly: false },
+        restore: {},
+        saveAsImage: {}
+      }
+    },
+    series: [
+      {
+        name: '德国排水合流制占比',
+        type: 'map',
+        map: 'edu',
+
+        emphasis: {
+          label: {
+            show: true
+          }
+        },
+        data: [
+          { name: 'Niedersachsen', value: 6.6 },
+          { name: 'Hamburg', value: 31.1 },
+          { name: 'Schleswig-Holstein', value: 11.0 },
+          { name:'Nordrhein-Westfalen',value:62.0 },
+          { name:'Bremen',value:40.7 },
+          { name:'Hessen',value:66.9 },
+          { name:'Rheinland-Pfalz',value:78.9 },
+          { name:'Saarland',value: 92.1 },
+          { name:'Baden-Württemberg',value: 60.8 },
+          { name:'Mecklenburg-Vorpommern',value:5.5 },
+          { name:'Brandenburg',value:3.9 },
+          { name:'Berlin',value:26.4 },
+          { name:'Sachsen-Anhalt',value:22.1 },
+          { name:'Sachsen',value:47.4 },
+          { name:'Thüringen',value: 75.3 },
+          { name:'Bayern',value:65.8 },
+        ]
+      }
+    ]
+  };
+  charts.setOption(option);
+</script>
+
+</html>
